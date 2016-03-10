@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on red667.net</title>
+    <link>https://red667.net/post/</link>
+    <description>Recent content in Posts on red667.net</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Thu, 10 Mar 2016 16:31:38 +0100</lastBuildDate>
+    <atom:link href="https://red667.net/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>init</title>
+      <link>https://red667.net/post/init/</link>
+      <pubDate>Thu, 10 Mar 2016 16:31:38 +0100</pubDate>
+      
+      <guid>https://red667.net/post/init/</guid>
+      <description>
+
+&lt;h2 id=&#34;initial-post:24f14e8bc2db2f8447e489c9e0327d48&#34;&gt;initial post&lt;/h2&gt;
+
+&lt;p&gt;this is just the initial post to get the page on the interwebs.&lt;/p&gt;
+
+&lt;p&gt;depending on my workload some real content should follow soon &amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

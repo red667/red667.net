@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>red667.net</title>
+    <link>https://red667.net/</link>
+    <description>Recent content on red667.net</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Thu, 10 Mar 2016 16:31:38 +0100</lastBuildDate>
+    <atom:link href="https://red667.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>init</title>
+      <link>https://red667.net/post/init/</link>
+      <pubDate>Thu, 10 Mar 2016 16:31:38 +0100</pubDate>
+      
+      <guid>https://red667.net/post/init/</guid>
+      <description>
+
+&lt;h2 id=&#34;initial-post:24f14e8bc2db2f8447e489c9e0327d48&#34;&gt;initial post&lt;/h2&gt;
+
+&lt;p&gt;this is just the initial post to get the page on the interwebs.&lt;/p&gt;
+
+&lt;p&gt;depending on my workload some real content should follow soon &amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>contact</title>
+      <link>https://red667.net/contact/</link>
+      <pubDate>Sat, 05 Mar 2016 23:31:22 +0100</pubDate>
+      
+      <guid>https://red667.net/contact/</guid>
+      <description>
+
+&lt;h3 id=&#34;contact-me:3c4864f00d23f7ea35511ec930ce1d9c&#34;&gt;contact me:&lt;/h3&gt;
+
+&lt;h4 id=&#34;email:3c4864f00d23f7ea35511ec930ce1d9c&#34;&gt;email&lt;/h4&gt;
+
+&lt;p&gt;red(at)red667(dot)net&lt;/p&gt;
+
+&lt;p&gt;gpg-fingerprint:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;5F686364B18328B0A91E9B3B22B174DD3ADBEABF
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;jabber:3c4864f00d23f7ea35511ec930ce1d9c&#34;&gt;jabber&lt;/h4&gt;
+
+&lt;p&gt;red667(at)jabber(dot)metalab.at&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;follow-me:3c4864f00d23f7ea35511ec930ce1d9c&#34;&gt;follow me:&lt;/h3&gt;
+
+&lt;h4 id=&#34;twitter:3c4864f00d23f7ea35511ec930ce1d9c&#34;&gt;twitter&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://twitter.com/red667&#34;&gt;@red667&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;github:3c4864f00d23f7ea35511ec930ce1d9c&#34;&gt;github&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/red667&#34;&gt;https://github.com/red667&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>about</title>
+      <link>https://red667.net/about/</link>
+      <pubDate>Sat, 05 Mar 2016 23:21:08 +0100</pubDate>
+      
+      <guid>https://red667.net/about/</guid>
+      <description>&lt;p&gt;Hi, I&amp;rsquo;m Bernd Forstner a.k.a. red667.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m a hacker from Vienna/Austria. On this website I try to post stuff about system administration, security and programming.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

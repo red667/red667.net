@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://red667.net/</loc>
+    <lastmod>2016-03-10T16:31:38+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://red667.net/post/init/</loc>
+    <lastmod>2016-03-10T16:31:38+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://red667.net/contact/</loc>
+    <lastmod>2016-03-05T23:31:22+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://red667.net/about/</loc>
+    <lastmod>2016-03-05T23:21:08+01:00</lastmod>
+  </url>
+  
+</urlset>
