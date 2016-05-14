@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.15" />
 
-  <title>init &middot; red667.net</title>
+  <title>letsencrypt &middot; red667.net</title>
 
   
   
@@ -175,7 +175,7 @@
 
 
 <div class="header">
-  <h1>init</h1>
+  <h1>letsencrypt</h1>
   <h2></h2>
 </div>
 <div class="content">
@@ -184,7 +184,7 @@
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
-    <time>10 Mar 2016, 16:31</time>
+    <time>14 May 2016, 21:12</time>
   </div>
 
   
@@ -197,26 +197,61 @@
 
   
 
-<h2 id="initial-post:24f14e8bc2db2f8447e489c9e0327d48">initial post</h2>
+<h2 id="letsencrypt-on-fedora-23-for-apache-postfix-and-dovecot:b1ded643d32a1f7beb1d1f4046dee1f9">letsencrypt on fedora 23 for apache, postfix and dovecot</h2>
 
-<p>this is just the initial post to get the page on the interwebs.</p>
+<p>Here&rdquo;s a small howto on how I set up SSL encyption for apache, postfix and dovecot with certs from <a href="https://letsencrypt.org/">letsencrypt</a>.</p>
 
-<p>depending on my workload some real content should follow soon &hellip;</p>
+<h3 id="install-letsencrypt:b1ded643d32a1f7beb1d1f4046dee1f9">install letsencrypt</h3>
+
+<p>To install letsencrypt just run:</p>
+
+<pre><code class="language-bash">sudo dnf install -y letsencrypt
+</code></pre>
+
+<h3 id="generate-the-certs:b1ded643d32a1f7beb1d1f4046dee1f9">generate the certs</h3>
+
+<p>Since I already have an apache running with the default webroot I can run this command to generate the certs for the root domain and the sub-domains used for the mail servers:</p>
+
+<pre><code class="language-bash">letsencrypt --text --email red@red667.net -d red667.net -d mail.red667.net -d imap.red667.net --agree-tos --renew-by-default --webroot --webroot-path /var/www/html certonly
+</code></pre>
+
+<h3 id="config-apache:b1ded643d32a1f7beb1d1f4046dee1f9">config apache</h3>
+
+<p>To add the certs to apache edit following lines in <code>/etc/httpd/conf.d/ssl.conf</code>:</p>
+
+<pre><code>SSLCertificateFile /etc/letsencrypt/live/red667.net/cert.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/red667.net/privkey.pem
+</code></pre>
+
+<h3 id="config-postfix:b1ded643d32a1f7beb1d1f4046dee1f9">config postfix</h3>
+
+<p>To add the certs to postfix edit following lines in <code>/etc/postfix/main.cf</code>:</p>
+
+<pre><code>smtpd_tls_key_file = /etc/letsencrypt/live/red667.net/privkey.pem
+smtpd_tls_cert_file = /etc/letsencrypt/live/red667.net/fullchain.pem
+smtpd_tls_CAfile = /etc/letsencrypt/live/red667.net/fullchain.pem
+smtp_tls_key_file = /etc/letsencrypt/live/red667.net/privkey.pem
+smtp_tls_cert_file = /etc/letsencrypt/live/red667.net/fullchain.pem
+</code></pre>
+
+<h3 id="config-dovecot:b1ded643d32a1f7beb1d1f4046dee1f9">config dovecot</h3>
+
+<p>To add th certs to dovecot edit following lines in <code>/etc/dovecot/conf.d/10-ssl.conf</code></p>
+
+<pre><code>ssl_cert = &lt;/etc/letsencrypt/live/red667.net/fullchain.pem
+ssl_key = &lt;/etc/letsencrypt/live/red667.net/privkey.pem
+</code></pre>
 
 
   
 <div class="prev-next-post pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
     
-    <nav class="prev">
-      <a href="https://red667.net/post/backscatter/"><i class="fa fa-arrow-circle-left fa-fw fa-lg"></i>backscatter</a>
-    </nav>
-    
   </div>
   <div class="pure-u-1 pure-u-md-1-2">
     
     <nav class="next">
-      <a href="https://red667.net/contact/">contact<i class="fa fa-arrow-circle-right fa-fw fa-lg"></i></a>
+      <a href="https://red667.net/post/backscatter/">backscatter<i class="fa fa-arrow-circle-right fa-fw fa-lg"></i></a>
     </nav>
     
   </div>

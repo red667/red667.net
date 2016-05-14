@@ -7,8 +7,63 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 14 May 2016 19:05:24 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 14 May 2016 21:12:33 +0200</lastBuildDate>
     <atom:link href="https://red667.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>letsencrypt</title>
+      <link>https://red667.net/post/letsencrypt/</link>
+      <pubDate>Sat, 14 May 2016 21:12:33 +0200</pubDate>
+      
+      <guid>https://red667.net/post/letsencrypt/</guid>
+      <description>
+
+&lt;h2 id=&#34;letsencrypt-on-fedora-23-for-apache-postfix-and-dovecot:b1ded643d32a1f7beb1d1f4046dee1f9&#34;&gt;letsencrypt on fedora 23 for apache, postfix and dovecot&lt;/h2&gt;
+
+&lt;p&gt;Here&amp;rdquo;s a small howto on how I set up SSL encyption for apache, postfix and dovecot with certs from &lt;a href=&#34;https://letsencrypt.org/&#34;&gt;letsencrypt&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;install-letsencrypt:b1ded643d32a1f7beb1d1f4046dee1f9&#34;&gt;install letsencrypt&lt;/h3&gt;
+
+&lt;p&gt;To install letsencrypt just run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo dnf install -y letsencrypt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;generate-the-certs:b1ded643d32a1f7beb1d1f4046dee1f9&#34;&gt;generate the certs&lt;/h3&gt;
+
+&lt;p&gt;Since I already have an apache running with the default webroot I can run this command to generate the certs for the root domain and the sub-domains used for the mail servers:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;letsencrypt --text --email red@red667.net -d red667.net -d mail.red667.net -d imap.red667.net --agree-tos --renew-by-default --webroot --webroot-path /var/www/html certonly
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;config-apache:b1ded643d32a1f7beb1d1f4046dee1f9&#34;&gt;config apache&lt;/h3&gt;
+
+&lt;p&gt;To add the certs to apache edit following lines in &lt;code&gt;/etc/httpd/conf.d/ssl.conf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SSLCertificateFile /etc/letsencrypt/live/red667.net/cert.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/red667.net/privkey.pem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;config-postfix:b1ded643d32a1f7beb1d1f4046dee1f9&#34;&gt;config postfix&lt;/h3&gt;
+
+&lt;p&gt;To add the certs to postfix edit following lines in &lt;code&gt;/etc/postfix/main.cf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;smtpd_tls_key_file = /etc/letsencrypt/live/red667.net/privkey.pem
+smtpd_tls_cert_file = /etc/letsencrypt/live/red667.net/fullchain.pem
+smtpd_tls_CAfile = /etc/letsencrypt/live/red667.net/fullchain.pem
+smtp_tls_key_file = /etc/letsencrypt/live/red667.net/privkey.pem
+smtp_tls_cert_file = /etc/letsencrypt/live/red667.net/fullchain.pem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;config-dovecot:b1ded643d32a1f7beb1d1f4046dee1f9&#34;&gt;config dovecot&lt;/h3&gt;
+
+&lt;p&gt;To add th certs to dovecot edit following lines in &lt;code&gt;/etc/dovecot/conf.d/10-ssl.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssl_cert = &amp;lt;/etc/letsencrypt/live/red667.net/fullchain.pem
+ssl_key = &amp;lt;/etc/letsencrypt/live/red667.net/privkey.pem
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>backscatter</title>
