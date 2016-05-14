@@ -7,8 +7,75 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 10 Mar 2016 16:31:38 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 14 May 2016 19:05:24 +0200</lastBuildDate>
     <atom:link href="https://red667.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>backscatter</title>
+      <link>https://red667.net/post/backscatter/</link>
+      <pubDate>Sat, 14 May 2016 19:05:24 +0200</pubDate>
+      
+      <guid>https://red667.net/post/backscatter/</guid>
+      <description>
+
+&lt;h2 id=&#34;how-to-circumvent-backscatter:81e00db474569b8e9f4923a95404871b&#34;&gt;How to circumvent Backscatter&lt;/h2&gt;
+
+&lt;h3 id=&#34;what-is-backscatter-mail:81e00db474569b8e9f4923a95404871b&#34;&gt;what is backscatter mail?&lt;/h3&gt;
+
+&lt;p&gt;When a spammer or an other attacker sends you an email with the sender domain being your own:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;EHLO example.com
+MAIL FROM: test@example.com
+RCPT TO: test@example.com
+data
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;why-to-do-something-against-it:81e00db474569b8e9f4923a95404871b&#34;&gt;why to do something against it&lt;/h3&gt;
+
+&lt;p&gt;I use this to send spearphishing attacks to customers when I perform social engineering email attacks. So if you leave this attack vector open I can send you email for example from your boss your it department etc.&lt;/p&gt;
+
+&lt;h3 id=&#34;how-to-fix-this-in-postfix:81e00db474569b8e9f4923a95404871b&#34;&gt;how to fix this in postfix&lt;/h3&gt;
+
+&lt;p&gt;On stackoverflow I found some methods how to fix this for postfix: &lt;a href=&#34;https://serverfault.com/questions/688758/reject-incoming-emails-that-use-your-own-domain-as-sender#comment849777_688758&#34;&gt;Link&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I chose the 3rd method. Since I just have my mail accounts this was the easiest one.&lt;/p&gt;
+
+&lt;p&gt;Add you mail addresses and logins to &lt;code&gt;/etc/postfix/smtpd_sender_login_maps&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;test@example.com test
+foo@example.com foo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then load the file with the command &lt;code&gt;sudo postmap /etc/postfix/smtpd_sender_login_maps&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And finally add following lines to &lt;code&gt;/etc/postfix/main.cf&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;smtpd_sender_restrictions = reject_unknown_sender_domain,
+                            reject_authenticated_sender_login_mismatch,
+                            reject_non_fqdn_sender,
+                            reject_sender_login_mismatch,
+                            reject_unverified_sender,
+                            reject_sender_login_mismatch,
+                            permit_sasl_authenticated
+                            reject_unlisted_sender,
+                            permit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now your postfix should reject unauthenticated senders with your domain. To test this just connect to the mail server with telnet:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;telnet example.com 25
+EHLO example.com
+MAIL FROM: &amp;lt;test@example.com&amp;gt;
+RCPT TO: &amp;lt;test@example.com&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And it should trigger this error message:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;553 5.7.1 &amp;lt;test@example.com&amp;gt;: Sender address rejected: not logged in
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>init</title>
